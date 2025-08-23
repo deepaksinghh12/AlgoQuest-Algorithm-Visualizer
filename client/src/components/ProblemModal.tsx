@@ -15,7 +15,7 @@ interface ProblemModalProps {
 
 export default function ProblemModal({ problem, onClose, onVisualize, fullScreen = false }: ProblemModalProps) {
   const [language, setLanguage] = useState("javascript");
-  const [code, setCode] = useState(problem.starterCode[language as keyof typeof problem.starterCode] || "");
+  const [code, setCode] = useState((problem.starterCode as Record<string, string>)?.[language] || "");
   const [testResults, setTestResults] = useState<Array<{ passed: boolean; message: string }>>([]);
   const queryClient = useQueryClient();
   const { toast } = useToast();
@@ -25,7 +25,7 @@ export default function ProblemModal({ problem, onClose, onVisualize, fullScreen
       const response = await apiRequest("POST", "/api/execute", {
         code: codeToRun,
         language,
-        input: problem.testCases[0]?.input || []
+        input: (problem.testCases as Array<{input: any}>)?.[0]?.input || []
       });
       return response.json();
     },
@@ -80,11 +80,11 @@ export default function ProblemModal({ problem, onClose, onVisualize, fullScreen
 
   const handleLanguageChange = (newLanguage: string) => {
     setLanguage(newLanguage);
-    setCode(problem.starterCode[newLanguage as keyof typeof problem.starterCode] || "");
+    setCode((problem.starterCode as Record<string, string>)?.[newLanguage] || "");
   };
 
   const handleReset = () => {
-    setCode(problem.starterCode[language as keyof typeof problem.starterCode] || "");
+    setCode((problem.starterCode as Record<string, string>)?.[language] || "");
     setTestResults([]);
   };
 
@@ -131,7 +131,7 @@ export default function ProblemModal({ problem, onClose, onVisualize, fullScreen
                 {problem.description}
               </p>
               
-              {problem.examples && problem.examples.length > 0 && (
+              {problem.examples && Array.isArray(problem.examples) && problem.examples.length > 0 && (
                 <>
                   <h3 className="text-lg font-semibold mb-4">Examples:</h3>
                   {(problem.examples as Array<{input: string, output: string, explanation?: string}>).map((example, index) => (

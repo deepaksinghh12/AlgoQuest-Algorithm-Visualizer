@@ -54,7 +54,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (status === "Accepted") {
         const user = await storage.getUser(validatedData.userId);
         if (user) {
-          await storage.updateUserScore(validatedData.userId, user.score + 10);
+          await storage.updateUserScore(validatedData.userId, (user.score ?? 0) + 10);
           
           // Create activity
           await storage.createActivity({

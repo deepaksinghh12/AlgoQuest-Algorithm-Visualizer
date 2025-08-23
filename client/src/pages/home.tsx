@@ -58,7 +58,7 @@ export default function Home() {
                     <div className="flex items-center mb-2">
                       <Trophy className="w-5 h-5 mr-2" />
                       <span className="text-sm font-medium opacity-90">
-                        {new Date(activeContest.createdAt).toLocaleDateString()}
+                        {activeContest.createdAt ? new Date(activeContest.createdAt).toLocaleDateString() : 'N/A'}
                       </span>
                     </div>
                     <h2 className="text-xl font-bold mb-2">{activeContest.title}</h2>

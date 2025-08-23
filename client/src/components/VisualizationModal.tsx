@@ -18,7 +18,8 @@ export default function VisualizationModal({ problem, onClose }: VisualizationMo
   useEffect(() => {
     if (problem?.visualizationType === "array-traversal" || problem?.visualizationType === "sorting") {
       // Initialize visualization data
-      const initialData = problem.testCases[0]?.input?.[0] || [2, 7, 11, 15];
+      const testCases = problem.testCases as Array<{input: any[]}>;
+      const initialData = testCases?.[0]?.input?.[0] || [2, 7, 11, 15];
       setAnimationState({ step: 0, data: initialData });
     }
   }, [problem]);

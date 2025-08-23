@@ -42,7 +42,7 @@ export default function ProblemCard({ problem, onClick }: ProblemCardProps) {
             <span className="text-slate-600 font-medium">AlgoQuest Bot</span>
             <span className="text-slate-400">posted a new problem</span>
             <span className="text-slate-400 text-sm">
-              {new Date(problem.createdAt).toLocaleDateString()}
+              {problem.createdAt ? new Date(problem.createdAt).toLocaleDateString() : 'N/A'}
             </span>
           </div>
           <h3 className="text-lg font-semibold text-slate-800 mb-2" data-testid={`text-title-${problem.id}`}>
@@ -71,13 +71,13 @@ export default function ProblemCard({ problem, onClick }: ProblemCardProps) {
         </div>
         <div className="text-right ml-4">
           <div className="text-sm text-slate-500 mb-1" data-testid={`text-accepted-${problem.id}`}>
-            Accepted: {problem.acceptedSubmissions >= 1000000 
-              ? `${(problem.acceptedSubmissions / 1000000).toFixed(1)}M`
-              : `${Math.floor(problem.acceptedSubmissions / 1000)}K`
+            Accepted: {(problem.acceptedSubmissions ?? 0) >= 1000000 
+              ? `${((problem.acceptedSubmissions ?? 0) / 1000000).toFixed(1)}M`
+              : `${Math.floor((problem.acceptedSubmissions ?? 0) / 1000)}K`
             }
           </div>
           <div className="text-sm text-slate-500" data-testid={`text-acceptance-rate-${problem.id}`}>
-            {problem.acceptanceRate}%
+            {problem.acceptanceRate ?? 0}%
           </div>
         </div>
       </div>

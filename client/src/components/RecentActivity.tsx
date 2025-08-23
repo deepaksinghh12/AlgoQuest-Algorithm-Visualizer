@@ -53,7 +53,7 @@ export default function RecentActivity() {
               </span>
             </div>
             <div className="text-xs text-slate-500 mt-1" data-testid={`text-activity-time-${activity.id}`}>
-              {formatTimeAgo(activity.createdAt)}
+              {activity.createdAt ? formatTimeAgo(activity.createdAt) : 'Unknown time'}
             </div>
           </div>
         ))}

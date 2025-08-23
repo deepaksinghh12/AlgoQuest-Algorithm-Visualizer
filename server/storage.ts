@@ -270,7 +270,7 @@ export class MemStorage implements IStorage {
     const user = this.users.get(userId);
     if (user) {
       user.score = score;
-      user.problemsSolved = (user.problemsSolved || 0) + 1;
+      user.problemsSolved = (user.problemsSolved ?? 0) + 1;
       this.users.set(userId, user);
     }
   }
@@ -386,7 +386,7 @@ export class MemStorage implements IStorage {
 
   async joinContest(contestId: string, userId: string): Promise<void> {
     const contest = this.contests.get(contestId);
-    if (contest && !contest.participants.includes(userId)) {
+    if (contest && contest.participants && !contest.participants.includes(userId)) {
       contest.participants.push(userId);
       this.contests.set(contestId, contest);
     }
