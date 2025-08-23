@@ -23,14 +23,10 @@ export default function Sidebar({ filters, onFiltersChange, onVisualizationToggl
     });
   };
 
-  const handleTagChange = (tag: string, checked: boolean) => {
-    const newTags = checked
-      ? [...filters.tags, tag]
-      : filters.tags.filter(t => t !== tag);
-    
+  const handleCategoryChange = (category: string, checked: boolean) => {
     onFiltersChange({
       ...filters,
-      tags: newTags,
+      category: checked ? category : "",
     });
   };
 
@@ -93,23 +89,26 @@ export default function Sidebar({ filters, onFiltersChange, onVisualizationToggl
           </div>
         </div>
 
-        {/* Algorithm Types */}
+        {/* Categories */}
         <div className="mb-6">
-          <h3 className="text-sm font-medium text-slate-700 mb-3">Algorithm Types</h3>
+          <h3 className="text-sm font-medium text-slate-700 mb-3">Categories</h3>
           <div className="space-y-2">
             {[
+              "Array",
+              "String",
+              "Math",
+              "Stack",
               "Sorting",
-              "Searching", 
-              "Graph Algorithms",
+              "Binary Search", 
               "Dynamic Programming",
-              "Trees & Binary Search"
+              "Linked List"
             ].map(tag => (
               <label key={tag} className="flex items-center">
                 <input 
                   type="checkbox" 
                   className="rounded border-slate-300 text-primary focus:ring-primary"
-                  checked={filters.tags.includes(tag.toLowerCase().replace(/ & | /g, "-"))}
-                  onChange={(e) => handleTagChange(tag.toLowerCase().replace(/ & | /g, "-"), e.target.checked)}
+                  checked={filters.category === tag}
+                  onChange={(e) => handleCategoryChange(tag, e.target.checked)}
                   data-testid={`checkbox-tag-${tag.toLowerCase().replace(/ & | /g, "-")}`}
                 />
                 <span className="ml-2 text-sm">{tag}</span>

@@ -21,7 +21,21 @@ export default function Home() {
   });
 
   const { data: problems = [] } = useQuery<Problem[]>({
-    queryKey: ["/api/problems", filters],
+    queryKey: ["/api/problems"],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (filters.difficulty.length > 0) {
+        filters.difficulty.forEach(d => params.append('difficulty', d));
+      }
+      if (filters.category) params.append('category', filters.category);
+      if (filters.tags.length > 0) {
+        filters.tags.forEach(t => params.append('tags', t));
+      }
+      if (filters.search) params.append('search', filters.search);
+      
+      const response = await fetch(`/api/problems?${params.toString()}`);
+      return response.json();
+    }
   });
 
   const { data: activeContest } = useQuery<Contest>({

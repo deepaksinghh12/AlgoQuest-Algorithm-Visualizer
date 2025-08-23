@@ -81,7 +81,7 @@ export class MemStorage implements IStorage {
     const sampleProblems = [
       {
         title: "Two Sum",
-        description: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+        description: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.",
         difficulty: "Easy",
         category: "Array",
         tags: ["array", "hash-table", "two-pointers"],
@@ -103,7 +103,7 @@ export class MemStorage implements IStorage {
           { input: [[3,3], 6], expectedOutput: [0,1] }
         ],
         starterCode: {
-          javascript: "function twoSum(nums, target) {\n    // Write your solution here\n}",
+          javascript: "function twoSum(nums, target) {\n    // Write your solution here\n    \n}",
           python: "def two_sum(nums, target):\n    # Write your solution here\n    pass",
           java: "public int[] twoSum(int[] nums, int target) {\n    // Write your solution here\n}"
         },
@@ -111,6 +111,214 @@ export class MemStorage implements IStorage {
         acceptedSubmissions: 1200000,
         totalSubmissions: 1411765,
         visualizationType: "array-traversal"
+      },
+      {
+        title: "Palindrome Number",
+        description: "Given an integer x, return true if x is a palindrome, and false otherwise.",
+        difficulty: "Easy",
+        category: "Math",
+        tags: ["math"],
+        examples: [
+          {
+            input: "x = 121",
+            output: "true",
+            explanation: "121 reads as 121 from left to right and from right to left."
+          },
+          {
+            input: "x = -121",
+            output: "false",
+            explanation: "From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome."
+          }
+        ],
+        constraints: [
+          "-2^31 ≤ x ≤ 2^31 - 1"
+        ],
+        testCases: [
+          { input: [121], expectedOutput: true },
+          { input: [-121], expectedOutput: false },
+          { input: [10], expectedOutput: false }
+        ],
+        starterCode: {
+          javascript: "function isPalindrome(x) {\n    // Write your solution here\n    \n}",
+          python: "def is_palindrome(x):\n    # Write your solution here\n    pass",
+          java: "public boolean isPalindrome(int x) {\n    // Write your solution here\n}"
+        },
+        acceptanceRate: 53,
+        acceptedSubmissions: 2800000,
+        totalSubmissions: 5283019,
+        visualizationType: null
+      },
+      {
+        title: "Reverse String",
+        description: "Write a function that reverses a string. The input string is given as an array of characters s. You must do this by modifying the input array in-place with O(1) extra memory.",
+        difficulty: "Easy",
+        category: "String",
+        tags: ["string", "two-pointers"],
+        examples: [
+          {
+            input: 's = ["h","e","l","l","o"]',
+            output: '["o","l","l","e","h"]',
+            explanation: "Reverse the string in-place."
+          }
+        ],
+        constraints: [
+          "1 ≤ s.length ≤ 10^5",
+          "s[i] is a printable ascii character."
+        ],
+        testCases: [
+          { input: [["h","e","l","l","o"]], expectedOutput: ["o","l","l","e","h"] },
+          { input: [["H","a","n","n","a","h"]], expectedOutput: ["h","a","n","n","a","H"] }
+        ],
+        starterCode: {
+          javascript: "function reverseString(s) {\n    // Write your solution here\n    \n}",
+          python: "def reverse_string(s):\n    # Write your solution here\n    pass",
+          java: "public void reverseString(char[] s) {\n    // Write your solution here\n}"
+        },
+        acceptanceRate: 76,
+        acceptedSubmissions: 1800000,
+        totalSubmissions: 2368421,
+        visualizationType: "array-traversal"
+      },
+      {
+        title: "Valid Parentheses",
+        description: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets and in the correct order.",
+        difficulty: "Easy",
+        category: "Stack",
+        tags: ["string", "stack"],
+        examples: [
+          {
+            input: 's = "()"',
+            output: "true",
+            explanation: "The string contains valid parentheses."
+          },
+          {
+            input: 's = "()[]{}"',
+            output: "true",
+            explanation: "All brackets are properly matched."
+          },
+          {
+            input: 's = "(]"',
+            output: "false",
+            explanation: "Brackets are not properly matched."
+          }
+        ],
+        constraints: [
+          "1 ≤ s.length ≤ 10^4",
+          "s consists of parentheses only '()[]{}'."
+        ],
+        testCases: [
+          { input: ["()"], expectedOutput: true },
+          { input: ["()[]{}"], expectedOutput: true },
+          { input: ["(]"], expectedOutput: false },
+          { input: ["([)]"], expectedOutput: false }
+        ],
+        starterCode: {
+          javascript: "function isValid(s) {\n    // Write your solution here\n    \n}",
+          python: "def is_valid(s):\n    # Write your solution here\n    pass",
+          java: "public boolean isValid(String s) {\n    // Write your solution here\n}"
+        },
+        acceptanceRate: 40,
+        acceptedSubmissions: 2100000,
+        totalSubmissions: 5250000,
+        visualizationType: null
+      },
+      {
+        title: "Maximum Subarray",
+        description: "Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum. A subarray is a contiguous part of an array.",
+        difficulty: "Medium",
+        category: "Dynamic Programming",
+        tags: ["array", "divide-and-conquer", "dynamic-programming"],
+        examples: [
+          {
+            input: "nums = [-2,1,-3,4,-1,2,1,-5,4]",
+            output: "6",
+            explanation: "[4,-1,2,1] has the largest sum = 6."
+          }
+        ],
+        constraints: [
+          "1 ≤ nums.length ≤ 10^5",
+          "-10^4 ≤ nums[i] ≤ 10^4"
+        ],
+        testCases: [
+          { input: [[-2,1,-3,4,-1,2,1,-5,4]], expectedOutput: 6 },
+          { input: [[1]], expectedOutput: 1 },
+          { input: [[5,4,-1,7,8]], expectedOutput: 23 }
+        ],
+        starterCode: {
+          javascript: "function maxSubArray(nums) {\n    // Write your solution here\n    \n}",
+          python: "def max_sub_array(nums):\n    # Write your solution here\n    pass",
+          java: "public int maxSubArray(int[] nums) {\n    // Write your solution here\n}"
+        },
+        acceptanceRate: 50,
+        acceptedSubmissions: 1500000,
+        totalSubmissions: 3000000,
+        visualizationType: "array-traversal"
+      },
+      {
+        title: "Merge Two Sorted Lists",
+        description: "You are given the heads of two sorted linked lists list1 and list2. Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.",
+        difficulty: "Easy",
+        category: "Linked List",
+        tags: ["linked-list", "recursion"],
+        examples: [
+          {
+            input: "list1 = [1,2,4], list2 = [1,3,4]",
+            output: "[1,1,2,3,4,4]",
+            explanation: "Merge the two sorted lists."
+          }
+        ],
+        constraints: [
+          "The number of nodes in both lists is in the range [0, 50].",
+          "-100 ≤ Node.val ≤ 100",
+          "Both list1 and list2 are sorted in non-decreasing order."
+        ],
+        testCases: [
+          { input: [[1,2,4], [1,3,4]], expectedOutput: [1,1,2,3,4,4] },
+          { input: [[], []], expectedOutput: [] },
+          { input: [[], [0]], expectedOutput: [0] }
+        ],
+        starterCode: {
+          javascript: "function mergeTwoLists(list1, list2) {\n    // Write your solution here\n    // Note: For this demo, work with arrays\n    \n}",
+          python: "def merge_two_lists(list1, list2):\n    # Write your solution here\n    # Note: For this demo, work with arrays\n    pass",
+          java: "public int[] mergeTwoLists(int[] list1, int[] list2) {\n    // Write your solution here\n}"
+        },
+        acceptanceRate: 60,
+        acceptedSubmissions: 2200000,
+        totalSubmissions: 3666667,
+        visualizationType: null
+      },
+      {
+        title: "Binary Search",
+        description: "Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.",
+        difficulty: "Easy",
+        category: "Binary Search",
+        tags: ["array", "binary-search"],
+        examples: [
+          {
+            input: "nums = [-1,0,3,5,9,12], target = 9",
+            output: "4",
+            explanation: "9 exists in nums and its index is 4"
+          }
+        ],
+        constraints: [
+          "1 ≤ nums.length ≤ 10^4",
+          "-10^4 < nums[i], target < 10^4",
+          "All the integers in nums are unique.",
+          "nums is sorted in ascending order."
+        ],
+        testCases: [
+          { input: [[-1,0,3,5,9,12], 9], expectedOutput: 4 },
+          { input: [[-1,0,3,5,9,12], 2], expectedOutput: -1 }
+        ],
+        starterCode: {
+          javascript: "function search(nums, target) {\n    // Write your solution here\n    \n}",
+          python: "def search(nums, target):\n    # Write your solution here\n    pass",
+          java: "public int search(int[] nums, int target) {\n    // Write your solution here\n}"
+        },
+        acceptanceRate: 55,
+        acceptedSubmissions: 1600000,
+        totalSubmissions: 2909091,
+        visualizationType: "searching"
       },
       {
         title: "Bubble Sort",
@@ -134,7 +342,7 @@ export class MemStorage implements IStorage {
           { input: [[5, 2, 4, 6, 1, 3]], expectedOutput: [1, 2, 3, 4, 5, 6] }
         ],
         starterCode: {
-          javascript: "function bubbleSort(arr) {\n    // Write your solution here\n    return arr;\n}",
+          javascript: "function bubbleSort(arr) {\n    // Write your solution here\n    \n}",
           python: "def bubble_sort(arr):\n    # Write your solution here\n    return arr",
           java: "public int[] bubbleSort(int[] arr) {\n    // Write your solution here\n    return arr;\n}"
         },
@@ -165,7 +373,7 @@ export class MemStorage implements IStorage {
           { input: [[5, 2, 4, 6, 1, 3]], expectedOutput: [1, 2, 3, 4, 5, 6] }
         ],
         starterCode: {
-          javascript: "function quickSort(arr) {\n    // Write your solution here\n    return arr;\n}",
+          javascript: "function quickSort(arr) {\n    // Write your solution here\n    \n}",
           python: "def quick_sort(arr):\n    # Write your solution here\n    return arr",
           java: "public int[] quickSort(int[] arr) {\n    // Write your solution here\n    return arr;\n}"
         },
@@ -173,6 +381,42 @@ export class MemStorage implements IStorage {
         acceptedSubmissions: 634000,
         totalSubmissions: 812820,
         visualizationType: "sorting"
+      },
+      {
+        title: "Fibonacci Number",
+        description: "The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. Given n, calculate F(n).",
+        difficulty: "Easy",
+        category: "Dynamic Programming", 
+        tags: ["math", "dynamic-programming", "recursion", "memoization"],
+        examples: [
+          {
+            input: "n = 2",
+            output: "1",
+            explanation: "F(2) = F(1) + F(0) = 1 + 0 = 1."
+          },
+          {
+            input: "n = 3",
+            output: "2",
+            explanation: "F(3) = F(2) + F(1) = 1 + 1 = 2."
+          }
+        ],
+        constraints: [
+          "0 ≤ n ≤ 30"
+        ],
+        testCases: [
+          { input: [2], expectedOutput: 1 },
+          { input: [3], expectedOutput: 2 },
+          { input: [4], expectedOutput: 3 }
+        ],
+        starterCode: {
+          javascript: "function fib(n) {\n    // Write your solution here\n    \n}",
+          python: "def fib(n):\n    # Write your solution here\n    pass",
+          java: "public int fib(int n) {\n    // Write your solution here\n}"
+        },
+        acceptanceRate: 69,
+        acceptedSubmissions: 1100000,
+        totalSubmissions: 1594203,
+        visualizationType: null
       }
     ];
 

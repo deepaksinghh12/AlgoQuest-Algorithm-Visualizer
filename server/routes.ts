@@ -202,15 +202,77 @@ async function executeCodeWithInput(code: string, language: string, input: any) 
       const func = new Function("input", `
         ${code}
         
-        // Try to find the main function and execute it
+        // Try to find and execute different function patterns
+        
+        // Two Sum
         if (typeof twoSum === 'function') {
           return twoSum(...input);
         }
+        
+        // Palindrome Number
+        if (typeof isPalindrome === 'function') {
+          return isPalindrome(input[0]);
+        }
+        
+        // Reverse String
+        if (typeof reverseString === 'function') {
+          const arr = [...input[0]];
+          reverseString(arr);
+          return arr;
+        }
+        
+        // Valid Parentheses
+        if (typeof isValid === 'function') {
+          return isValid(input[0]);
+        }
+        
+        // Maximum Subarray
+        if (typeof maxSubArray === 'function') {
+          return maxSubArray(input[0]);
+        }
+        
+        // Merge Two Sorted Lists (arrays)
+        if (typeof mergeTwoLists === 'function') {
+          return mergeTwoLists(input[0], input[1]);
+        }
+        
+        // Binary Search
+        if (typeof search === 'function') {
+          return search(...input);
+        }
+        
+        // Sorting algorithms
         if (typeof bubbleSort === 'function') {
-          return bubbleSort(input[0]);
+          return bubbleSort([...input[0]]);
         }
         if (typeof quickSort === 'function') {
-          return quickSort(input[0]);
+          return quickSort([...input[0]]);
+        }
+        
+        // Fibonacci
+        if (typeof fib === 'function') {
+          return fib(input[0]);
+        }
+        
+        // Generic function detection
+        const funcMatch = code.match(/function\\s+(\\w+)/);
+        if (funcMatch) {
+          const funcName = funcMatch[1];
+          try {
+            const testFunc = eval(funcName);
+            if (typeof testFunc === 'function') {
+              // Try different argument patterns
+              if (input.length === 1) {
+                return testFunc(input[0]);
+              } else if (input.length === 2) {
+                return testFunc(input[0], input[1]);
+              } else {
+                return testFunc(...input);
+              }
+            }
+          } catch (e) {
+            // Function not found, continue
+          }
         }
         
         return null;
@@ -223,6 +285,6 @@ async function executeCodeWithInput(code: string, language: string, input: any) 
     // For other languages, return a mock result
     return { output: null, error: "Language not supported in demo" };
   } catch (error) {
-    return { output: null, error: error.message };
+    return { output: null, error: error instanceof Error ? error.message : "Unknown error" };
   }
 }

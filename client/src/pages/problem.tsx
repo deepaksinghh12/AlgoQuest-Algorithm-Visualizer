@@ -9,6 +9,11 @@ export default function ProblemPage() {
   
   const { data: problem, isLoading } = useQuery<Problem>({
     queryKey: ["/api/problems", id],
+    queryFn: async () => {
+      const response = await fetch(`/api/problems/${id}`);
+      return response.json();
+    },
+    enabled: !!id,
   });
 
   if (isLoading) {
