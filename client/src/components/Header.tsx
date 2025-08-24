@@ -11,7 +11,12 @@ export default function Header() {
               <h1 className="text-xl font-bold text-slate-800">AlgoQuest</h1>
             </div>
             <nav className="hidden md:ml-10 md:flex space-x-8">
-              <a href="#" className="text-primary font-medium" data-testid="link-explore">Explore</a>
+            <a 
+            href="https://roadmap.sh/" 
+            className="nav-link"
+            target="_blank"   // open in new tab (remove if you want same tab)
+            rel="noopener noreferrer">
+            Explore</a>
               <a href="#" className="text-slate-600 hover:text-slate-800" data-testid="link-contests">Contests</a>
               <a href="#" className="text-slate-600 hover:text-slate-800" data-testid="link-discuss">Discuss</a>
               <a href="#" className="text-slate-600 hover:text-slate-800" data-testid="link-leaderboard">Leaderboard</a>

@@ -4,7 +4,6 @@ interface ProblemCardProps {
   problem: Problem;
   onClick: () => void;
 }
-
 export default function ProblemCard({ problem, onClick }: ProblemCardProps) {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty.toLowerCase()) {
